@@ -1,0 +1,67 @@
+<div class="container" th:fragment="header">
+    <header class="p-3 mb-3 border-bottom">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                <i class="bi bi-film"></i>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/kmovies/" class="nav-link px-2 link-secondary">Home</a></li>
+            </ul>
+
+            <div class="btn-group">
+                <button class="btn text-black btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Apps
+                </button>
+                <ul class="dropdown-menu" style="">
+                    <li><a class="dropdown-item" href="/kmovies/movies">Movies</a></li>
+                    <li><a class="dropdown-item" href="/kmovies/tvseries">TV series</a></li>
+                    <li><a class="dropdown-item" href="/prescription-periods/view">Prescription periods</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!--<div class="container">
+    <img src="https://source.unsplash.com/1320x400/?movie" class="img-fluid" style="z-index:0;position:absolute;" alt="Random movie image"/>
+    <p style="z-index:1;font-size:4.2em;top:30px;margin-left:30px;color:white;text-shadow: 2px 2px 8px #000000;position:relative;">K!Movies</p>
+    </div>-->
+    <div class="card">
+        <img class="card-img" src="https://source.unsplash.com/1320x400/?movie" alt="Random movie image">
+        <div class="card-img-overlay text-white d-flex align-items-end">
+            <p style="font-size:4.2em;text-shadow: 2px 2px 8px #000000;">K!Movies</p>
+        </div>
+    </div>
+</div>
+<div class="container" th:fragment="footer">
+    <footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script>
+        $('document').ready(function() {
+
+            $('.table #editClient').on('click', function(event) {
+                event.preventDefault();
+
+                var href = $(this).attr('href')
+
+                $.get(href, function(client, status) {
+                    $('#iid').val(client.id);
+                    $('#inpfirstname').val(client.firstname);
+                    $('#inplastname').val(client.lastname);
+                    $('#inpbirthday').val(client.birthday);
+                })
+
+                $('#editModal').modal('show');
+            })
+
+            $('.table #delMovie').on('click', function(event) {
+                var href = $(this).attr('href')
+
+                $('#delModal #delRef').attr('href', href);
+                $('#delModal').modal('show');
+            })
+        })
+        </script>
+    </footer>
+</div>
