@@ -9,5 +9,4 @@ class KMoviesApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

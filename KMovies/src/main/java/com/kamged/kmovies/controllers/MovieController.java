@@ -1,7 +1,7 @@
 package com.kamged.kmovies.controllers;
 
 import com.kamged.kmovies.models.Movie;
-import com.kamged.kmovies.services.MovieService;
+import com.kamged.kmovies.services.IMovieService;
 import com.kamged.kmovies.services.OMDbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/kmovies")
 public class MovieController {
     @Autowired
-    MovieService _movieService;
+    IMovieService _movieService;
 
     @GetMapping("/")
     public String IndexView(Model model) {
         model.addAttribute("numMovies", _movieService.getAllMovies().size());
-        model.addAttribute("numTVSeries", _movieService.getAllTVSeries().size());
+        /*model.addAttribute("numTVSeries", _movieService.getAllTVSeries().size());*/
 
         return "index";
     }
@@ -35,7 +35,7 @@ public class MovieController {
     public String CreateMovie(Movie movie, Model model) {
         String[] res = OMDbService.OMDbRequest(movie.getTitle(), movie.getYear());
 
-        if(res[0] != "False" && !_movieService.MovieExists(movie.getTitle(), movie.getYear())) {
+        if(!res[0].equals("False") && !_movieService.MovieExists(movie.getTitle(), movie.getYear())) {
             movie.setResult(res[0]);
             movie.setType(res[1]);
             movie.setPoster(res[2]);

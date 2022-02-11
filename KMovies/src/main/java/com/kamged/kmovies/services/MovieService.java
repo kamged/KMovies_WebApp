@@ -5,17 +5,18 @@ import com.kamged.kmovies.models.TVSeries;
 import com.kamged.kmovies.repositories.IMovieRepo;
 import com.kamged.kmovies.repositories.ITVSeriesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class MovieService {
+@Component
+public class MovieService implements IMovieService {
     @Autowired
     IMovieRepo _movieRepo;
 
-    @Autowired
-    ITVSeriesRepo _seriesRepo;
+    /*@Autowired
+    ITVSeriesRepo _seriesRepo;*/
 
     public List<Movie> getAllMovies() {
         return _movieRepo.findAll();
@@ -35,7 +36,7 @@ public class MovieService {
                               .count() > 0) ? true : false;
     }
 
-    public List<TVSeries> getAllTVSeries() {
+    /*public List<TVSeries> getAllTVSeries() {
         return _seriesRepo.findAll();
-    }
+    }*/
 }
